@@ -31,7 +31,7 @@ How To Install And Use
 
 ZProfiler is a custom C++ module for Godot 3.1+. It must be compiled into the engine to work.
 
-As a module, it holds a particular place because in theory, any place of 
+As a module, it holds a particular place because in theory, any place of the engine should be able to use it, while modules are supposed to be optional independent parts, so I'm not sure if a module is the right place to put this system. Including `modules/zprofiler/server/zprofiler.h` and starting to use `ZPROFILER_SCOPE()` should works anyways, though.
 
 
 Roadmap
