@@ -1,0 +1,30 @@
+Import('env')
+Import('env_modules')
+
+env_zprofiler = env_modules.Clone()
+
+files = [
+	"*.cpp",
+	"client/*.cpp",
+	"server/*.cpp"
+]
+
+for f in files:
+	env_zprofiler.add_source_files(env.modules_sources, f)
+
+# Ignored clang warnings because Godot's codebase is old and isn't using override yet
+if env['platform'] == 'osx' or env['platform'] == 'android':
+    env_zprofiler.Append(CXXFLAGS=['-Wno-inconsistent-missing-override'])
+
+# Doesn't work, because reasons
+#if env.msvc:
+#	env_zprofiler.Append(CXXFLAGS=['/std:c++17'])
+#else:
+#	env_zprofiler.Append(CXXFLAGS=['-std=c++17'])
+
+# This also doesn't work, since the rest of Godot doesn't use this, linking fails.
+# No safe STL boundary checks for you.
+#if env['target'] == 'debug':
+#	if env.msvc:
+#		# Enable STL bound checks, Godot's master environment doesn't do it
+#		env_zprofiler.Append(CXXFLAGS=['/D_DEBUG'])
