@@ -17,6 +17,7 @@ Features
 - Function and scope sampling in C++ by adding a single macro
 - API supports either string literal (fastest) or `StringName` for script-friendly usage
 - Microsecond accuracy using Godot's time functions
+- Low overhead: effort is made for sampling to be very fast. Goals being: no dictionary lookup, no string copies, no allocations, no mutex locking. Only getting time and blitting the info into an array by index.
 - Multithreaded: each thread can be recorded independently
 - Client/server architecture: the server records, the client displays.
 - Client GUI made with Godot nodes, can be embedded in game or in editor
